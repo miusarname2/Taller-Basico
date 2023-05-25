@@ -6,6 +6,8 @@ const edadMay = document.querySelector('.Q2')
 const calcArea = document.querySelector('.Q3')
 const calcAreaC = document.querySelector('.Q4')
 const calcAreaR = document.querySelector('.Q5')
+const cambAmbient = document.querySelector('.A1')
+
 
 //todo Clases padres 
 //* Creo la clase Persona
@@ -51,6 +53,17 @@ class Figura{
     }
     calcularArea(){
         return this.area
+    }
+}
+
+class Vehiculo{
+    constructor({marca="Mazda",modelo=12,velocidad=0}){
+        this.marca=marca
+        this.modelo=modelo
+        this.velocidad=velocidad
+    }
+    acelerar(){
+        this.velocidad += 10;   return this.velocidad   
     }
 }
 
@@ -106,6 +119,18 @@ class Rectangulo extends Figura{
     }
 }
 
+class Coche extends Vehiculo{
+    constructor({marca="Mazda",modelo=12,velocidad=0,combustible=100}){
+        super({marca,modelo,velocidad})
+        this.combustible=combustible
+    }
+    acelerar(){
+        this.combustible -= 20
+        this.velocidad +=10
+        return(this.combustible,this.velocidad)
+    }
+}
+
 
 //todo Instacias de clases...
 
@@ -142,7 +167,7 @@ let circulo1 = new Circulo({color:"Azul",area:10,radio:5})
 let rectangulo1 = new Rectangulo({color:"Negro",area:10,largo:10,ancho:15})
 
 
-
+let vehiculo1 = new Vehiculo({marca:"Mazda",modelo:12,velocidad:0})
 
 
 
@@ -185,7 +210,21 @@ let rectangulo1 = new Rectangulo({color:"Negro",area:10,largo:10,ancho:15})
        el.innerHTML = rectangulo1.calcularArea()
     });
 
+    cambAmbient.addEventListener('click',()=>{
+        const el= document.querySelector('.container')
+        el.innerHTML=`<div class="background-image"><div class="app"><div class="container1"></div><img src="https://img.freepik.com/vector-premium/caricatura-hombre-joven-coche_7496-612.jpg" height="350px" alt="" class="image1"></div><h1>Estamos aduera...</h1></div><div class="button-container"><button class="button acelerar" >ACELERAR GOD (No gastas combustible)</button></div><button class="button2 A2">Regresar adentro</button>`
+        const act2= document.querySelector('.A2')
+        const acelerarG = document.querySelector(".acelerar")
+        act2.addEventListener('click',()=>{
+            location.reload()
+        });
 
+        acelerarG.addEventListener("click",()=>{
+            document.querySelector(".container1").innerHTML=`<div class="bocadillo-cuadrado"></div>`
+            const el = document.querySelector('.bocadillo-cuadrado')
+            el.innerHTML = vehiculo1.acelerar()+ " Km/H"
+        })
+    });
 
 
 
