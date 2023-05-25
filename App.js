@@ -72,6 +72,17 @@ class Vehiculo{
     }
 }
 
+class Empleado{
+    constructor({nombre="James",edad=30,sueldo=15000}){
+        this.nombre=nombre
+        this.edad = edad
+        this.sueldo=sueldo
+    }
+    calcularSalarioAnual() {
+        return this.sueldo*12
+    }
+}
+
 
 
 
@@ -176,6 +187,7 @@ let vehiculo1 = new Vehiculo({marca:"Mazda",modelo:12,velocidad:0})
 
 let coche1 = new Coche({marca:"Hyunday",modelo:2010,velocidad:0,combustible:200})
 
+let empleado1 = new Empleado({nombre:"James",edad:30,sueldo:15000})
 
 
 //! Estos son los eventos y los cambios en el documento
@@ -217,11 +229,12 @@ let coche1 = new Coche({marca:"Hyunday",modelo:2010,velocidad:0,combustible:200}
 
     cambAmbient.addEventListener('click',()=>{
         const el= document.querySelector('.container')
-        el.innerHTML=`<div class="background-image"><div class="app"><div class="container1"></div><img src="https://img.freepik.com/vector-premium/caricatura-hombre-joven-coche_7496-612.jpg" height="350px" alt="" class="image1"></div><h1>Estamos aduera...</h1></div><div class="button-container"><button class="button acelerar" >ACELERAR GOD (No gastas combustible)</button><button class="button acelerarN" >ACELERAR Noob (gasta combustible)</button><button class="button conV" >Ver velocidad en Millas</button></div><button class="button2 A2">Regresar adentro</button>`
+        el.innerHTML=`<div class="background-image"><div class="app"><div class="container1"></div><img src="https://img.freepik.com/vector-premium/caricatura-hombre-joven-coche_7496-612.jpg" height="350px" alt="" class="image1"></div><h1>Estamos afuera... Vamos a dar un paseo </h1></div><div class="button-container"><button class="button acelerar" >ACELERAR GOD (No gastas combustible)</button><button class="button acelerarN" >ACELERAR Noob (gasta combustible)</button><button class="button conV" >Ver velocidad en Millas</button></div><button class="button2 A2">Regresar adentro</button><button class="button3 A3">Termina Paseo</button>`
         const act2= document.querySelector('.A2')
         const acelerarG = document.querySelector(".acelerar")
         const acelerarN = document.querySelector(".acelerarN")
         const convertir = document.querySelector(".conV")
+        const endR = document.querySelector(".A3")
         act2.addEventListener('click',()=>{
             location.reload()
         });
@@ -243,6 +256,27 @@ let coche1 = new Coche({marca:"Hyunday",modelo:2010,velocidad:0,combustible:200}
             const el = document.querySelector('.bocadillo-cuadrado')
             el.innerHTML=`La velocidad en millas es de ${Vehiculo.convertirKmHEnMph(coche1.velocidad)} <- Esto es gastando combustible`
         });
+
+        endR.addEventListener("click",()=>{
+            const el= document.querySelector('.container')
+            el.innerHTML=`<div class="background-image"><div class="app"><div class="container1"></div><img src="https://thumbs.dreamstime.com/b/persona-adolescente-sonriendo-y-saludando-caricatura-156730534.jpg" height="350px" alt="" class="image1"></div><h1>¡Un Amigo ha Aparecido!</h1></div><div class="button-container"><button class="button salYear" >¿Cuanto ganas al años amigo?</button></div><button class="button2 A2">Regresar a Casa</button><button class="button4 A">Seguir....</button>`
+            const salAnual= document.querySelector(".salYear")
+            const act2= document.querySelector('.A2')
+            const continues=document.querySelector(".A")
+            act2.addEventListener('click',()=>{
+                location.reload()
+            });
+            salAnual.addEventListener("click",()=>{
+                document.querySelector(".container1").innerHTML=`<div class="bocadillo-cuadrado"></div>`
+                const el = document.querySelector('.bocadillo-cuadrado')
+                el.innerHTML=`Yo gano ${empleado1.calcularSalarioAnual()} dolares anuales y tu compa?`
+            });
+
+            continues.addEventListener("click",()=>{
+                
+            });
+            
+        })
     });
 
 
