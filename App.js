@@ -4,6 +4,8 @@ const saludar = document.querySelector('.saludarA')
 const dedicas = document.querySelector('.Q1')
 const edadMay = document.querySelector('.Q2')
 const calcArea = document.querySelector('.Q3')
+const calcAreaC = document.querySelector('.Q4')
+const calcAreaR = document.querySelector('.Q5')
 
 //todo Clases padres 
 //* Creo la clase Persona
@@ -92,6 +94,18 @@ class Circulo extends Figura{
     }
 }
 
+class Rectangulo extends Figura{
+    constructor({color="Negro",area=12,largo=10,ancho=10}){
+        super({color,area})
+        this.largo = largo
+        this.ancho = ancho
+    }
+    calcularArea(){
+        this.area =this.largo*this.ancho
+        return this.area
+    }
+}
+
 
 //todo Instacias de clases...
 
@@ -120,6 +134,12 @@ perro1.moverCola()
 let figura1 = new Figura({color:"Rojo",area:2})
 figura1.calcularArea()
 
+
+
+let circulo1 = new Circulo({color:"Azul",area:10,radio:5})
+
+
+let rectangulo1 = new Rectangulo({color:"Negro",area:10,largo:10,ancho:15})
 
 
 
@@ -153,6 +173,17 @@ figura1.calcularArea()
     el.innerHTML = figura1.calcularArea()
  });
 
+ calcAreaC.addEventListener('click',()=>{
+     bocadillo.innerHTML = `<div class="bocadillo-cuadrado"></div>`
+     const el = document.querySelector('.bocadillo-cuadrado')
+     el.innerHTML = circulo1.calcularArea()
+  });
+
+  calcAreaR.addEventListener('click',()=>{
+       bocadillo.innerHTML = `<div class="bocadillo-cuadrado"></div>`
+       const el = document.querySelector('.bocadillo-cuadrado')
+       el.innerHTML = rectangulo1.calcularArea()
+    });
 
 
 
