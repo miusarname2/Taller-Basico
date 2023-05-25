@@ -1,4 +1,9 @@
 // Llamo la clase saludarA del Documento
+const bocadillo = document.querySelector('.container1')
+const saludar = document.querySelector('.saludarA')
+const dedicas = document.querySelector('.Q1')
+const edadMay = document.querySelector('.Q2')
+const calcArea = document.querySelector('.Q3')
 
 //todo Clases padres 
 //* Creo la clase Persona
@@ -37,6 +42,15 @@ class Animal{
     }
 }
 
+class Figura{
+    constructor({color="Negro",area=12}){
+        this.color=color
+        this.area=area
+    }
+    calcularArea(){
+        return this.area
+    }
+}
 
 
 
@@ -64,7 +78,18 @@ class Perro extends Animal{
     moverCola(){
         console.log(`el perro ${this.nombre} está moviendo la cola.`);
     }
+    
+}
 
+class Circulo extends Figura{
+    constructor({color="Negro",area=12,radio=2}){
+        super({color,area})
+        this.radio=radio
+    }
+    calcularArea(){
+        this.area =3.14*this.radio**2 
+        return this.area
+    }
 }
 
 
@@ -92,23 +117,41 @@ perro1.hacerSonido()
 perro1.moverCola()
 
 
+let figura1 = new Figura({color:"Rojo",area:2})
+figura1.calcularArea()
+
+
+
+
 
 
 
 
 
 //! Estos son los eventos y los cambios en el documento
-// saludar.addEventListener('click', ()=>{
-//     bocadillo.innerHTML = persona1.saludar()
-// })
+ saludar.addEventListener('click', ()=>{
+     bocadillo.innerHTML = `<div class="bocadillo-cuadrado"></div>`
+     const el = document.querySelector('.bocadillo-cuadrado')
+     el.innerHTML = estudiante1.saludar()
+ })
 
-// dedicas.addEventListener('click',()=>{
-//     bocadillo.innerHTML = estudiante1.estudiar()
-// })
+ dedicas.addEventListener('click',()=>{
+    bocadillo.innerHTML = `<div class="bocadillo-cuadrado"></div>`
+     const el = document.querySelector('.bocadillo-cuadrado')
+     el.innerHTML = estudiante1.estudiar()
+ })
 
-// edadMay.addEventListener('click',()=>{
-//     bocadillo.innerHTML = Persona.esMayorDeEdad(estudiante1.edad) ? `La respuesta fue " ${Persona.esMayorDeEdad(estudiante1.edad)} " por tanto SI lo soy` :  `La respuesta fue " ${Persona.esMayorDeEdad(estudiante1.edad)} " por tanto NO lo soy`
-// })
+ edadMay.addEventListener('click',()=>{
+    bocadillo.innerHTML = `<div class="bocadillo-cuadrado"></div>`
+    const el = document.querySelector('.bocadillo-cuadrado')
+     el.innerHTML =Persona.esMayorDeEdad(estudiante1.edad) ? `La respuesta fue " ${Persona.esMayorDeEdad(estudiante1.edad)} " por tanto SI lo soy` :  `La respuesta fue " ${Persona.esMayorDeEdad(estudiante1.edad)} " por tanto NO lo soy`
+ })
+
+ calcArea.addEventListener('click',()=>{
+    bocadillo.innerHTML = `<div class="bocadillo-cuadrado"></div>`
+    const el = document.querySelector('.bocadillo-cuadrado')
+    el.innerHTML = figura1.calcularArea()
+ });
 
 
 

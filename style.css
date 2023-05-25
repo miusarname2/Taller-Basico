@@ -54,4 +54,14 @@ body {
     border: none;
     background-color: #3498db;
 
+}
 
+
+  .image2 {
+    position: absolute;
+    top: 1000;
+    left: 800px; /* Ajusta la posición horizontal según necesites */
+    height: 100px;
+  }
+
+  
