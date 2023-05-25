@@ -63,7 +63,12 @@ class Vehiculo{
         this.velocidad=velocidad
     }
     acelerar(){
-        this.velocidad += 10;   return this.velocidad   
+        this.velocidad += 10;   
+        return this.velocidad   
+    }
+    
+    static convertirKmHEnMph(velKm) {
+        return velKm/1.60934
     }
 }
 
@@ -125,9 +130,9 @@ class Coche extends Vehiculo{
         this.combustible=combustible
     }
     acelerar(){
-        this.combustible -= 20
-        this.velocidad +=10
-        return(this.combustible,this.velocidad)
+        this.velocidad += 10;
+        this.combustible -= 10;
+        return(this.velocidad +  `, carga de combustible ${this.combustible} L`)   
     }
 }
 
@@ -169,7 +174,7 @@ let rectangulo1 = new Rectangulo({color:"Negro",area:10,largo:10,ancho:15})
 
 let vehiculo1 = new Vehiculo({marca:"Mazda",modelo:12,velocidad:0})
 
-
+let coche1 = new Coche({marca:"Hyunday",modelo:2010,velocidad:0,combustible:200})
 
 
 
@@ -212,9 +217,11 @@ let vehiculo1 = new Vehiculo({marca:"Mazda",modelo:12,velocidad:0})
 
     cambAmbient.addEventListener('click',()=>{
         const el= document.querySelector('.container')
-        el.innerHTML=`<div class="background-image"><div class="app"><div class="container1"></div><img src="https://img.freepik.com/vector-premium/caricatura-hombre-joven-coche_7496-612.jpg" height="350px" alt="" class="image1"></div><h1>Estamos aduera...</h1></div><div class="button-container"><button class="button acelerar" >ACELERAR GOD (No gastas combustible)</button></div><button class="button2 A2">Regresar adentro</button>`
+        el.innerHTML=`<div class="background-image"><div class="app"><div class="container1"></div><img src="https://img.freepik.com/vector-premium/caricatura-hombre-joven-coche_7496-612.jpg" height="350px" alt="" class="image1"></div><h1>Estamos aduera...</h1></div><div class="button-container"><button class="button acelerar" >ACELERAR GOD (No gastas combustible)</button><button class="button acelerarN" >ACELERAR Noob (gasta combustible)</button><button class="button conV" >Ver velocidad en Millas</button></div><button class="button2 A2">Regresar adentro</button>`
         const act2= document.querySelector('.A2')
         const acelerarG = document.querySelector(".acelerar")
+        const acelerarN = document.querySelector(".acelerarN")
+        const convertir = document.querySelector(".conV")
         act2.addEventListener('click',()=>{
             location.reload()
         });
@@ -224,6 +231,18 @@ let vehiculo1 = new Vehiculo({marca:"Mazda",modelo:12,velocidad:0})
             const el = document.querySelector('.bocadillo-cuadrado')
             el.innerHTML = vehiculo1.acelerar()+ " Km/H"
         })
+
+        acelerarN.addEventListener("click",()=>{
+            document.querySelector(".container1").innerHTML=`<div class="bocadillo-cuadrado"></div>`
+            const el = document.querySelector('.bocadillo-cuadrado')
+            el.innerHTML=coche1.acelerar()
+        })
+
+        convertir.addEventListener("click",()=>{
+            document.querySelector(".container1").innerHTML=`<div class="bocadillo-cuadrado"></div>`
+            const el = document.querySelector('.bocadillo-cuadrado')
+            el.innerHTML=`La velocidad en millas es de ${Vehiculo.convertirKmHEnMph(coche1.velocidad)} <- Esto es gastando combustible`
+        });
     });
 
 
