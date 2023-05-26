@@ -73,6 +73,8 @@ class Vehiculo{
 }
 
 class Empleado{
+
+
     constructor({nombre="James",edad=30,sueldo=15000}){
         this.nombre=nombre
         this.edad = edad
@@ -80,6 +82,10 @@ class Empleado{
     }
     calcularSalarioAnual() {
         return this.sueldo*12
+    }
+    static genId= 1;
+    static generarIdEmpleado(){
+        return Empleado.genId++
     }
 }
 
@@ -199,6 +205,8 @@ let coche1 = new Coche({marca:"Hyunday",modelo:2010,velocidad:0,combustible:200}
 
 let empleado1 = new Empleado({nombre:"James",edad:30,sueldo:15000})
 
+let gerente1 = new Gerente({nombre:"James",edad:42,sueldo:150000,departamento:"IT & marketing"})
+
 
 
 
@@ -209,36 +217,43 @@ let empleado1 = new Empleado({nombre:"James",edad:30,sueldo:15000})
      el.innerHTML = estudiante1.saludar()
  })
 
+ //* llama al metodo estudiar y lo "escribe" en el HTML
  dedicas.addEventListener('click',()=>{
     bocadillo.innerHTML = `<div class="bocadillo-cuadrado"></div>`
      const el = document.querySelector('.bocadillo-cuadrado')
      el.innerHTML = estudiante1.estudiar()
  })
 
+ //* igual que el anterior pero con el metodo estatico esMayorDeEdad(estudiante1.edad) y con la diferencia de que utilizo un codicional para saber si es meyor o menor de edad 
  edadMay.addEventListener('click',()=>{
     bocadillo.innerHTML = `<div class="bocadillo-cuadrado"></div>`
     const el = document.querySelector('.bocadillo-cuadrado')
      el.innerHTML =Persona.esMayorDeEdad(estudiante1.edad) ? `La respuesta fue " ${Persona.esMayorDeEdad(estudiante1.edad)} " por tanto SI lo soy` :  `La respuesta fue " ${Persona.esMayorDeEdad(estudiante1.edad)} " por tanto NO lo soy`
  })
 
+ //*Muy parecido al anterior pero con el metodo  calcularArea()
  calcArea.addEventListener('click',()=>{
     bocadillo.innerHTML = `<div class="bocadillo-cuadrado"></div>`
     const el = document.querySelector('.bocadillo-cuadrado')
     el.innerHTML = figura1.calcularArea()
  });
 
+  //*Muy parecido al anterior pero con el metodo circulo1.calcularArea()
  calcAreaC.addEventListener('click',()=>{
      bocadillo.innerHTML = `<div class="bocadillo-cuadrado"></div>`
      const el = document.querySelector('.bocadillo-cuadrado')
      el.innerHTML = circulo1.calcularArea()
   });
 
+  //*Muy parecido al anterior pero con el metodo rectangulo1.calcularArea()
   calcAreaR.addEventListener('click',()=>{
        bocadillo.innerHTML = `<div class="bocadillo-cuadrado"></div>`
        const el = document.querySelector('.bocadillo-cuadrado')
        el.innerHTML = rectangulo1.calcularArea()
     });
 
+    //todo Esto es el inicio del codigo más dificil de entender/leer
+    //*Creo el escuchardor que se activa cuando doy click en ir afuera y esto reescribe el HTML y nos da una nueva "imagen"/"Escena" 
     cambAmbient.addEventListener('click',()=>{
         const el= document.querySelector('.container')
         el.innerHTML=`<div class="background-image"><div class="app"><div class="container1"></div><img src="https://img.freepik.com/vector-premium/caricatura-hombre-joven-coche_7496-612.jpg" height="350px" alt="" class="image1"></div><h1>Estamos afuera... Vamos a dar un paseo </h1></div><div class="button-container"><button class="button acelerar" >ACELERAR GOD (No gastas combustible)</button><button class="button acelerarN" >ACELERAR Noob (gasta combustible)</button><button class="button conV" >Ver velocidad en Millas</button></div><button class="button2 A2">Regresar adentro</button><button class="button3 A3">Termina Paseo</button>`
@@ -251,33 +266,44 @@ let empleado1 = new Empleado({nombre:"James",edad:30,sueldo:15000})
             location.reload()
         });
 
+        //* Escuchado para el boton acelerearGOD que e como ya se explica en el HTML sin gastar combustible
         acelerarG.addEventListener("click",()=>{
             document.querySelector(".container1").innerHTML=`<div class="bocadillo-cuadrado"></div>`
             const el = document.querySelector('.bocadillo-cuadrado')
             el.innerHTML = vehiculo1.acelerar()+ " Km/H"
         })
 
+        //* En este evento en el cual se ejecuta el evento este si gasta combustible
         acelerarN.addEventListener("click",()=>{
             document.querySelector(".container1").innerHTML=`<div class="bocadillo-cuadrado"></div>`
             const el = document.querySelector('.bocadillo-cuadrado')
             el.innerHTML=coche1.acelerar()
         })
 
+        //* Este tan solo hace la comversion por si eres un poco ... para no usr el SI(Sistema Internacional de Unidades** cof cof ** gringos ***cof cof**)
         convertir.addEventListener("click",()=>{
             document.querySelector(".container1").innerHTML=`<div class="bocadillo-cuadrado"></div>`
             const el = document.querySelector('.bocadillo-cuadrado')
             el.innerHTML=`La velocidad en millas es de ${Vehiculo.convertirKmHEnMph(coche1.velocidad)} <- Esto es gastando combustible`
         });
 
+        //! Este es un evento dentro del evento tengo entendido que nos es muy buena practica que digamos por que el codigo empieza a ir hacia la derecha y se ve la "Anidación Hadouken" <- buscalo en google asi.. 
+        //? Esto nuevamente reescribe elcodigo HTML par tener una nueva escena 
         endR.addEventListener("click",()=>{
             const el= document.querySelector('.container')
             el.innerHTML=`<div class="background-image"><div class="app"><div class="container1"></div><img src="https://thumbs.dreamstime.com/b/persona-adolescente-sonriendo-y-saludando-caricatura-156730534.jpg" height="350px" alt="" class="image1"></div><h1>¡Un Amigo ha Aparecido!</h1></div><div class="button-container"><button class="button salYear" >¿Cuanto ganas al años amigo?</button></div><button class="button2 A2">Regresar a Casa</button><button class="button4 A">Seguir....</button>`
+            
+            // Selectores de elementos HTML
             const salAnual= document.querySelector(".salYear")
             const act2= document.querySelector('.A2')
             const continues=document.querySelector(".A")
+
+            //* Esto recarga la pagina y como es tan sutil el usuario comun no lo nota, se que no se debe hacer pero fue la solucion para no hacer una "Estructura" algo más complicada
             act2.addEventListener('click',()=>{
                 location.reload()
             });
+
+            //* Pues... llamado al metodo empleado1.calcularSalarioAnual() y "aparicion" del "bocadillo"
             salAnual.addEventListener("click",()=>{
                 document.querySelector(".container1").innerHTML=`<div class="bocadillo-cuadrado"></div>`
                 const el = document.querySelector('.bocadillo-cuadrado')
@@ -286,13 +312,28 @@ let empleado1 = new Empleado({nombre:"James",edad:30,sueldo:15000})
 
             continues.addEventListener("click",()=>{
                 const el= document.querySelector('.container')
-                el.innerHTML=`<div class="background-image"><div class="app"><div class="container1"></div><img src="https://thumbs.dreamstime.com/b/personaje-de-caricatura-aislado-trabajador-oficina-hombre-con-traje-azul-c%C3%B3digo-vestimenta-empresario-y-corbata-elegantes-196331201.jpg" height="350px" alt="" class="image1"></div><h1>Parece que hemos encontrado al jefe de nuestro amigo(James)</h1></div><div class="button-container"><button class="button salYear" >¿Cuanto ganas al años amigo?</button></div><button class="button2 A2">Regresar a Casa</button>`
+                el.innerHTML=`<div class="background-image"><div class="app"><div class="container1"></div><img src="https://thumbs.dreamstime.com/b/personaje-de-caricatura-aislado-trabajador-oficina-hombre-con-traje-azul-c%C3%B3digo-vestimenta-empresario-y-corbata-elegantes-196331201.jpg" height="350px" alt="" class="image1"></div><h1>Parece que hemos encontrado al jefe de nuestro amigo(James)</h1></div><div class="button-container"><button class="button salYear" >¿Cuanto ganas al años amigo?</button></div><button class="button2 AN">¿ y que tiene de especial tu empresa?</button><button class="button2 A2">Regresar a Casa</button>`
+                
                 const salAnual=document.querySelector(".salYear")
+                const ID=document.querySelector(".AN")
+                const act2= document.querySelector('.A2')
                 
                 salAnual.addEventListener("click",()=>{
                     document.querySelector(".container1").innerHTML=`<div class="bocadillo-cuadrado"></div>`
                     const el = document.querySelector('.bocadillo-cuadrado')
-                    el.innerHTML=`Yo gano  dolares anuales y tu caballero?`
+                    el.innerHTML=`Yo gano ${gerente1.calcularSalarioAnual()} dolares anuales y uested    caballero?`
+                });
+
+                ID.addEventListener("click",()=>{
+                    document.querySelector(".container1").innerHTML=`<div class="bocadillo-cuadrado"></div>`
+                    const el = document.querySelector('.bocadillo-cuadrado')
+                    console.log("El id es:",Empleado.generarIdEmpleado(gerente1))
+                    el.innerHTML=`Pues de hecho si cada empleado tiene un id por ejemplo mi Id esta en la consola... `
+                });
+                
+                
+                act2.addEventListener('click',()=>{
+                    location.reload()
                 });
             });
             
