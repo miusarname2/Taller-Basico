@@ -147,6 +147,16 @@ class Coche extends Vehiculo{
     }
 }
 
+class Gerente extends Empleado{
+    constructor({nombre="Felipe",edad=42,sueldo=15000,departamento="Administración Telecomunicaciónes y tecnpologia"}) {
+        super({nombre,edad,sueldo})
+        this.departamento=departamento
+    }
+    calcularSalarioAnual(){
+        let bono = (this.sueldo*10)/100
+        return (this.sueldo+bono)*12
+    }
+}
 
 //todo Instacias de clases...
 
@@ -188,6 +198,8 @@ let vehiculo1 = new Vehiculo({marca:"Mazda",modelo:12,velocidad:0})
 let coche1 = new Coche({marca:"Hyunday",modelo:2010,velocidad:0,combustible:200})
 
 let empleado1 = new Empleado({nombre:"James",edad:30,sueldo:15000})
+
+
 
 
 //! Estos son los eventos y los cambios en el documento
@@ -273,7 +285,15 @@ let empleado1 = new Empleado({nombre:"James",edad:30,sueldo:15000})
             });
 
             continues.addEventListener("click",()=>{
+                const el= document.querySelector('.container')
+                el.innerHTML=`<div class="background-image"><div class="app"><div class="container1"></div><img src="https://thumbs.dreamstime.com/b/personaje-de-caricatura-aislado-trabajador-oficina-hombre-con-traje-azul-c%C3%B3digo-vestimenta-empresario-y-corbata-elegantes-196331201.jpg" height="350px" alt="" class="image1"></div><h1>Parece que hemos encontrado al jefe de nuestro amigo(James)</h1></div><div class="button-container"><button class="button salYear" >¿Cuanto ganas al años amigo?</button></div><button class="button2 A2">Regresar a Casa</button>`
+                const salAnual=document.querySelector(".salYear")
                 
+                salAnual.addEventListener("click",()=>{
+                    document.querySelector(".container1").innerHTML=`<div class="bocadillo-cuadrado"></div>`
+                    const el = document.querySelector('.bocadillo-cuadrado')
+                    el.innerHTML=`Yo gano  dolares anuales y tu caballero?`
+                });
             });
             
         })
